@@ -3,176 +3,86 @@
 ------------------------------------------------------------
 
 Name: Anas Norani  
-Reg. No: 501231  
-Course: Data Structures & Algorithms  
+Course: Data Structures and Algorithms  
 Institute: NUST  
 Semester: Fall 2025  
 
 ------------------------------------------------------------
-📚 OVERVIEW
+📘 Approach
 ------------------------------------------------------------
 
-This assignment demonstrates the application of **core data structures**
-to real-world inspired problems using **Object-Oriented Programming (OOP)**
-in C++. The solutions strictly adhere to the provided header files
-without modification and emphasize correctness, modularity, and efficiency.
+This assignment consists of three independent problems designed to demonstrate
+understanding and application of data structures through Object-Oriented Programming in C++.
 
-The assignment includes three major tasks:
-1. Polynomial Abstract Data Type (ADT)
-2. Text Editor Simulation
-3. UNO Game Simulation
+1. **Problem 1 – Polynomial ADT**
+   - **Approach:** Implemented a polynomial using a **linked list** where each node stores
+     a coefficient and exponent. The list remains sorted in descending order by exponent.
+     Duplicate exponents are merged automatically.
+   - **Key Operations:** insertTerm, add, multiply, derivative, toString.
+   - **Data Structure:** Linked List.
+   - **Reasoning:** Linked lists allow efficient insertion and deletion of polynomial terms,
+     especially when combining or differentiating.
 
-Each problem uses a **different data structure** suited to its context,
-highlighting a strong understanding of design and algorithmic thinking.
+2. **Problem 2 – Text Editor Simulation**
+   - **Approach:** Simulated a basic text editor with cursor functionality using **two stacks**:
+     the left stack holds text before the cursor, and the right stack holds text after it.
+     This enables O(1) cursor movement and character insertion/deletion.
+   - **Key Operations:** insertChar, deleteChar, moveLeft, moveRight, getTextWithCursor.
+   - **Data Structure:** Two Stacks.
+   - **Reasoning:** Using two stacks mirrors how real text editors manage text around the cursor
+     efficiently, avoiding costly string shifts.
 
-------------------------------------------------------------
-🧩 PROBLEM 1: Polynomial ADT
-------------------------------------------------------------
-
-🔹 **Approach:**
-A polynomial is represented as a **linked list** where each node stores a term’s
-coefficient and exponent. Terms are maintained in **descending order** of exponent.
-Duplicate powers are merged automatically, and zero terms are removed dynamically.
-
-🔹 **Data Structure Used:**  
-→ **Linked List** (manually implemented using a node structure)
-
-🔹 **Core Operations:**
-- `insertTerm(int c, int e)`: Inserts or merges terms while maintaining order.
-- `add(const Polynomial& other)`: Combines two polynomials by traversing linked lists.
-- `multiply(const Polynomial& other)`: Multiplies all term pairs and merges like powers.
-- `derivative()`: Computes the derivative using exponent rules.
-- `toString()`: Converts polynomial into readable string (e.g. “3x^2 + 2x - 5”).
-
-🔹 **Corner Cases Handled:**
-- Insertion of duplicate exponents → terms merged correctly.
-- Coefficient becomes zero → term automatically removed.
-- Empty polynomial → outputs “0”.
-
-🔹 **Challenges:**
-Maintaining sorted insertion order while merging terms and ensuring memory
-is correctly managed without leaks.
+3. **Problem 3 – UNO Game Simulation**
+   - **Approach:** Designed a simplified UNO game using **vectors** to represent decks,
+     player hands, and the discard pile. Game logic supports Skip, Reverse, and Draw Two cards,
+     with direction and turn order managed dynamically.
+   - **Key Operations:** initialize, playTurn, isGameOver, getState.
+   - **Data Structure:** Vectors.
+   - **Reasoning:** Vectors provide dynamic resizing and easy iteration, ideal for managing
+     changing card sets and game flow.
+   - **Sample Output Example:**
+     ```
+     Player 0's turn, Direction: Clockwise, Top: Blue 3, Players cards: P0:7, P1:7
+     Player 1's turn, Direction: Clockwise, Top: Blue 8, Players cards: P0:7, P1:6
+     Player 0's turn, Direction: Clockwise, Top: Yellow 8, Players cards: P0:6, P1:6
+     Player 0's turn, Direction: Clockwise, Top: Yellow Skip, Players cards: P0:5, P1:6
+     ```
 
 ------------------------------------------------------------
-⌨️ PROBLEM 2: Text Editor Simulation
+🌐 Publicly Accessible GitHub Link
 ------------------------------------------------------------
 
-🔹 **Approach:**
-A **cursor-based text editor** is simulated using **two stacks** (or equivalent logic).
-The left stack represents characters before the cursor, and the right stack
-represents characters after it. This allows **O(1)** insertion, deletion,
-and cursor movement operations.
+GitHub Repository:  
+👉https://github.com/anasnorani1/DSA-assignment1
 
-🔹 **Data Structure Used:**  
-→ **Two Stacks**
-
-🔹 **Core Operations:**
-- `insertChar(char c)`: Inserts character at cursor.
-- `deleteChar()`: Deletes character before cursor (backspace behavior).
-- `moveLeft()` / `moveRight()`: Moves cursor left/right safely.
-- `getTextWithCursor()`: Returns text with cursor represented by `|`.
-
-🔹 **Corner Cases Handled:**
-- Deleting when cursor at start → safely ignored.
-- Cursor movements beyond boundaries → prevented.
-- Empty editor → displays as “|”.
-
-🔹 **Challenges:**
-Maintaining synchronization between left and right stacks for cursor position
-and ensuring correct display after every operation.
-
+The repository includes all source files (`.cpp`, `.h`, and driver files)
+with clear commit history and meaningful commit messages demonstrating progressive development.
 
 ------------------------------------------------------------
-🎮 PROBLEM 3: UNO Game Simulation
+💡 Challenges Faced
 ------------------------------------------------------------
 
-🔹 **Approach:**
-Implemented a simplified **UNO Game** supporting special cards (Skip, Reverse, Draw Two)
-and automatic play turn logic. The game uses **vectors** for the deck, discard pile,
-and player hands. Each turn follows UNO rules, updating direction and skipping
-appropriately.
+**Problem 1 – Polynomial ADT**
+- Managing sorted insertion while merging like terms.
+- Handling memory safely to avoid leaks when removing or combining nodes.
+- Formatting string output correctly for negative coefficients and zero terms.
 
-🔹 **Data Structure Used:**  
-→ **Vectors** for dynamic storage of cards, players, and piles.
+**Problem 2 – Text Editor**
+- Keeping cursor movement synchronized between two stacks.
+- Preventing out-of-bound cursor movements.
+- Ensuring correct display after complex edit sequences.
 
-🔹 **Core Operations:**
-- `UNOGame(int numPlayers)`: Initializes game with given players.
-- `initialize()`: Creates, shuffles (fixed seed = 1234), and deals cards.
-- `playTurn()`: Plays a full valid turn (Skip, Reverse, Draw Two handled).
-- `isGameOver()`: Returns true when a player has no cards left.
-- `getState()`: Displays formatted game state and top card.
+**Problem 3 – UNO Game**
+- Implementing direction change (Reverse) and Skip logic correctly.
+- Handling Draw Two and ensuring the next player receives extra cards.
+- Managing the game state format so output matches exactly the required style (e.g., “Top: Red Skip”).
+- Ensuring deterministic results using a fixed shuffle seed.
 
-🔹 **Corner Cases Handled:**
-- Handling “Draw Two” when deck has fewer than two cards.
-- Consecutive Reverse/Skip combinations.
-- Detecting and declaring winner correctly.
-- Preventing invalid moves (must match color or value).
-
+**General Challenges**
+- Writing efficient logic under the constraint of unmodifiable header files.
+- Balancing correctness, modularity, and readability in C++.
+- Testing multiple edge cases to ensure robustness across all tasks.
 
 ------------------------------------------------------------
-🎮 PROBLEM 3: UNO Game Simulation
+✅ End of README
 ------------------------------------------------------------
-
-🔹 **Approach:**
-Implemented a simplified **UNO Game** supporting special cards (Skip, Reverse, Draw Two)
-and automatic play turn logic. The game uses **vectors** for the deck, discard pile,
-and player hands. Each turn follows UNO rules, updating direction and skipping
-appropriately.
-
-🔹 **Data Structure Used:**  
-→ **Vectors** for dynamic storage of cards, players, and piles.
-
-🔹 **Core Operations:**
-- `UNOGame(int numPlayers)`: Initializes game with given players.
-- `initialize()`: Creates, shuffles (fixed seed = 1234), and deals cards.
-- `playTurn()`: Plays a full valid turn (Skip, Reverse, Draw Two handled).
-- `isGameOver()`: Returns true when a player has no cards left.
-- `getState()`: Displays formatted game state and top card.
-
-🔹 **Corner Cases Handled:**
-- Handling “Draw Two” when deck has fewer than two cards.
-- Consecutive Reverse/Skip combinations.
-- Detecting and declaring winner correctly.
-- Preventing invalid moves (must match color or value).
-
-
-------------------------------------------------------------
-🧠 DATA STRUCTURES SUMMARY
-------------------------------------------------------------
-
-🔹 **Challenges:**
-- Strictly adhering to uneditable header files while designing efficient internal logic.
-
-- Balancing readability, correctness, and modularity in C++ code.
-
-- Managing dynamic memory safely (especially in the polynomial problem).
-
-- Ensuring that outputs exactly matched the provided sample outputs.
-
-- Using version control (GitHub) effectively to track and organize changes.
-
-- Designing a realistic flow with direction toggling, skip behavior,
-and ensuring top card formatting (e.g. “Red Skip”, “Blue 3”) matches the expected output.
-
-| Problem        | Data Structure | Purpose                                  |
-|----------------|----------------|------------------------------------------|
-| Polynomial     | Linked List     | Efficient term insertion and combination |
-| Text Editor    | Two Stacks      | O(1) cursor operations                   |
-| UNO Game       | Vector          | Dynamic card and player management       |
-
-------------------------------------------------------------
-💻 COMPILATION & EXECUTION
-------------------------------------------------------------
-
-Compile and run each task separately:
-
-```bash
-g++ polynomial.cpp main1.cpp -o polynomial
-./polynomial
-
-g++ texteditor.cpp main2.cpp -o texteditor
-./texteditor
-
-g++ uno.cpp main3.cpp -o uno
-./uno
-
